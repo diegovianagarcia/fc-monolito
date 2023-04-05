@@ -18,16 +18,18 @@ export default class AddClientUseCase {
       id: new Id(input.id) || new Id(),
       name: input.name,
       email: input.email,
+      document: input.document,
       address: input.address,
     };
 
     const client = new Client(props);
-    this._clientRepository.add(client);
+    await this._clientRepository.add(client);
 
     return {
       id: client.id.id,
       name: client.name,
       email: client.email,
+      document: client.document,
       address: client.address,
       createdAt: client.createdAt,
       updatedAt: client.updatedAt,
